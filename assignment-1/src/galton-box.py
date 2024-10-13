@@ -19,6 +19,8 @@ if len(sys.argv) != 3:
 try:
     NUM_STEPS = int(sys.argv[1])
     NUM_BALLS = int(sys.argv[2])
+    assert NUM_STEPS > 0
+    assert NUM_BALLS > 0
 except:
     usage()
 
@@ -53,9 +55,31 @@ normal_pdf = norm.pdf(x, mu, sigma) #normal probability density function
 plt.plot(x, normal_pdf, color='black')
 
 # Labels and title
-plt.xlabel('$k$')
-plt.ylabel('$P[X=k]$')
+plt.xlabel('$i$')
+plt.ylabel('$P[X=i]$')
 plt.title(f'Galton box with {NUM_BALLS} balls and {NUM_STEPS} steps')
 
 # Display the plot
 plt.show()
+
+
+
+# UNCOMMENT THIS TO SAVE THE FICURE IN ../plots/ DIRECTORY:
+
+# import os
+
+# def new_filename(base, extension):
+#     #name = base + '.' + extension
+#     name = '.' #always exists
+#     suffix_id = 0
+#     while os.path.exists(name):
+#         name = (base
+#             + '-' + chr(ord('a')+suffix_id) 
+#             + '.' + extension
+#         )
+#         suffix_id += 1
+#     return name
+
+# fn = new_filename(f'../plots/{sys.argv[1]}-{sys.argv[2]}', 'png')
+# plt.savefig(fn)
+# print(fn)

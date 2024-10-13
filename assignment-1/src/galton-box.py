@@ -2,6 +2,7 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
+import sys
 
 def move_left(i, j):
     return (i+1, j)
@@ -9,8 +10,17 @@ def move_left(i, j):
 def move_right(i, j):
     return (i, j+1)
 
-NUM_STEPS = 6
-NUM_BALLS = 8000
+def usage():
+    print(f'USAGE:\n\tpython {sys.argv[0]} NUM_STEPS NUM_BALLS')
+    exit()
+
+if len(sys.argv) != 3:
+    usage()
+try:
+    NUM_STEPS = int(sys.argv[1])
+    NUM_BALLS = int(sys.argv[2])
+except:
+    usage()
 
 # Drop ball in the galton box
 def drop_ball():
@@ -34,7 +44,7 @@ box_distribution = histogram/NUM_BALLS
 plt.bar(range(len(box_distribution)), box_distribution)
 
 
-# Normal distribution approximation
+# Normal distribution
 n = NUM_STEPS
 mu = n/2
 sigma = np.sqrt(n/4)
@@ -45,7 +55,7 @@ plt.plot(x, normal_pdf, color='black')
 # Labels and title
 plt.xlabel('$k$')
 plt.ylabel('$P[X=k]$')
-plt.title('')
+plt.title(f'Galton box with {NUM_BALLS} balls and {NUM_STEPS} steps')
 
 # Display the plot
 plt.show()

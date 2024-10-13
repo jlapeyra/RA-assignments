@@ -64,7 +64,7 @@ plt.show()
 
 
 
-# UNCOMMENT THIS TO SAVE THE FICURE IN ../plots/ DIRECTORY:
+# UNCOMMENT THIS TO SAVE THE FIGURE IN ../plots/ DIRECTORY:
 
 # import os
 
